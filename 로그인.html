@@ -28,15 +28,16 @@
             margin: 20px 0;
             position: relative;
         }
-        .input-box .text {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+        .input-box input {
+            width: calc(100% - 40px);
+            height: 100%;
+            border: none;
+            background: transparent;
             font-size: 16px;
             font-family: 'Rubik', sans-serif;
             font-weight: 300;
             color: #C9C9C9;
+            padding: 0 20px;
         }
         .button {
             width: 100%;
@@ -81,9 +82,9 @@
             margin-right: 20px; 
         }
         .logo img {
-        height: 85px; /* 원하는 높이로 설정 */
-        width: auto; /* 비율에 맞게 너비 자동 조정 */
-        margin: 15px 15px 0; /* 이미지와 문자 간 간격 조절 */
+            height: 85px; /* 원하는 높이로 설정 */
+            width: auto; /* 비율에 맞게 너비 자동 조정 */
+            margin: 15px 15px 0; /* 이미지와 문자 간 간격 조절 */
         }
 
         
@@ -141,11 +142,11 @@
         </div>
 
         <div class="input-box">
-            <div class="text">휴대폰 번호 또는 이메일 주소</div>
+            <input type="text" placeholder="휴대폰 번호 또는 이메일 주소">
         </div>
 
         <div class="input-box">
-            <div class="text">비밀번호</div>
+            <input type="password" placeholder="비밀번호">
         </div>
 
         <div class="link">비밀번호를 잊으셨나요?</div>
