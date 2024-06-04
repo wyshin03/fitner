@@ -91,7 +91,7 @@
             width: 80%;
             height: 80px;
             background: white;
-            border-radius: 15px;
+            border-radius: 5px;
             border: 2px #DAD7D7 solid;
             margin: 20px auto;
             position: relative;
@@ -120,7 +120,7 @@
             width: 50%;
             height: 80px;
             background: white;
-            border-radius: 15px;
+            border-radius: 5px;
             border: 2px #DAD7D7 solid;
             margin: 20px auto;
             position: relative;
@@ -147,7 +147,319 @@
             width: 60%;
             height: 80px;
             background: white;
-            border-radius: 15px;
+            border-radius: 5px;
+            border: 2px #DAD7D7 solid;
+            margin: 10px auto;
+            position: relative;
+            margin-bottom : 50px;
+        }
+
+        .input-box-id input {
+            width: calc(100% - 40px);
+            height: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            color: #202020;
+            padding: 0 20px;
+        } 
+
+        .label {
+            font-size: 20px;
+            font-weight: 300;
+            color: #C9C9C9;
+            font-family: Rubik;
+            word-wrap: break-word;
+            position: absolute;
+            top: -45px; /* Adjust as needed to position it properly */
+            left: 20px; 
+            transform: translateX(-10%);
+        }
+        .label-gender {
+            font-size: 20px;
+            font-weight: 300;
+            color: #C9C9C9;
+            font-family: Rubik;
+            word-wrap: break-word;
+            margin-right : 10px;
+            /* position: absolute;
+            top: -45px; Adjust as needed to position it properly 
+            left: 200px; 
+            transform: translateX(150%); */
+        }
+        .gender-option {
+            display: flex;
+            align-items: center;
+            /* justify-content: center;
+            margin: 20px 0; */
+        }
+        .gender-option div {
+            /* margin-right: 20px; */
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 300;
+            color: #C9C9C9;
+            margin-left: 10px;
+            /* margin-left :300px; */
+        }
+        .button-id {
+            width: 20%;
+            height: 80px;
+            background: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            margin-left : 0px;
+
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            color: #000000;
+            
+        }
+        .button-submit {
+            width: 80%;
+            height: 80px;
+            background: #CD0707;
+            border-radius: 30px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .link, .signup {
+            width: fit-content;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+        .link {
+            font-size: 14px;
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 300;
+            text-decoration: underline;
+        }
+      
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center horizontally */;
+            font-size: 100px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            letter-spacing: 8px;
+            margin: 50px 0;
+        }
+        .logo img {
+            height: 80px; /* 원하는 높이로 설정 */
+            width: auto; /* 비율에 맞게 너비 자동 조정 */
+            margin: 20px 15px 10px 0; /* 이미지와 문자 간 간격 조절 */
+        }
+
+        
+        .time {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 32px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 3.25px;
+        }
+        .extra-content {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0;
+        }
+
+        .extra-content img {
+            margin-left: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            .input-box {
+                height: 60px;
+            }
+            .button {
+                height: 60px;
+            }
+            .logo {
+                font-size: 50px;
+                letter-spacing: 5px;
+            }
+
+            .link {
+                font-size: 12px;
+            }
+ 
+            .extra-content img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검정색 배경 화면</title>
+
+  </head>
+  <body>
+      <div class="container">
+          <div class="logo">
+              F  
+              <img src="C:\Users\USER\OneDrive\바탕 화면\로고아령.png">
+              TNER
+          </div>
+
+          <div class ="input-container">
+            <div class="input-box-small">
+              <div class="label">이름</div>
+              <input type="text" placeholder="이름을 입력하세요.">
+            </div>
+              <div class="gender-option"></div>
+                <div class="label-gender">성별</div>
+                  <div>남자 <input type="checkbox" name="gender" value="male"></div>
+                  <div>여자 <input type="checkbox" name="gender" value="female"></div>
+                </div>
+            </div>
+
+        <script>
+          const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+          checkboxes.forEach(checkbox => {
+              checkbox.addEventListener('change', function() {
+                  if (this.checked) {
+                      checkboxes.forEach(otherCheckbox => {
+                          if (otherCheckbox !== this) {
+                              otherCheckbox.checked = false;
+                          }
+                      });
+                  }
+              });
+          });
+      </script>
+
+         <div class="input-box-big">
+             <div class="label">생년월일</div>
+            <input type="text" placeholder="생년월일을 입력해주세요.(6자리)">
+        </div>
+
+         <div class="input-box-big">
+           <div class="label">휴대폰 번호</div>
+          <input type="text" placeholder="휴대폰 번호를 입력해주세요.">
+         </div>
+
+        <div class ="input-container-id">
+          <div class="input-box-id">
+            <div class="label">아이디</div>
+            <input type="text" placeholder="*아이디를 입력해주세요.">
+          </div>
+          <div class="button-id">중복확인</div>
+        </div>
+
+        <div class="input-box-big">
+          <div class="label">비밀번호</div>
+         <input type="text" placeholder="*비밀번호를 입력해주세요.">
+        </div>
+
+          <div class="button-submit">회원가입</div>
+
+      
+  </body>
+  </html>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #1C1C1C;
+            color: white;
+            font-family: 'Noto Sans', sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            padding: 20px;
+            max-width: 480px;
+            margin: 0px auto;
+        }
+
+        .input-box-big {
+            width: 80%;
+            height: 80px;
+            background: white;
+            border-radius: 5px;
+            border: 2px #DAD7D7 solid;
+            margin: 20px auto;
+            position: relative;
+            margin-bottom : 50px;
+        }
+        
+         .input-box-big input {
+            width: calc(100% - 40px);
+            height: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            color: #202020;
+            padding: 0 20px;
+        } 
+
+        .input-container {
+          display: flex;
+          align-items: center;
+          margin-bottom: 50px;
+        }
+
+        .input-box-small {
+            width: 50%;
+            height: 80px;
+            background: white;
+            border-radius: 5px;
+            border: 2px #DAD7D7 solid;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .input-box-small input {
+            width: calc(100% - 40px);
+            height: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            color: #202020;
+            padding: 0 20px;
+        } 
+        .input-container-id {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-box-id {
+            width: 60%;
+            height: 80px;
+            background: white;
+            border-radius: 5px;
             border: 2px #DAD7D7 solid;
             margin: 10px auto;
             position: relative;
