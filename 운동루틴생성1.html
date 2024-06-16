@@ -37,9 +37,38 @@
         <textarea></textarea>
     </div>
 
-    <button class="new-gigoo-btn"> 운동기구 추가하기 </div>
-    <button class="new-gigoo-btn"> 관련링크 추가하기 </div>
-
+        <!-- 운동기구 추가 자바스크립트  -->
+        <button class="new-gigoo-btn" onclick="addExerciseEquipment()">운동기구 추가하기</button>
+        <button class="new-gigoo-btn">관련링크 추가하기</button>
+        
+        <script>
+            function addExerciseEquipment() {
+                // Create a new input-ya div
+                const newInputYa = document.createElement('div');
+                newInputYa.className = 'input-ya';
+                newInputYa.innerHTML = `
+                    <input type="text" placeholder="운동 기구">
+                    <input type="text" placeholder="운동 시간">
+                `;
+        
+                // Create a new info div
+                const newInfo = document.createElement('div');
+                newInfo.className = 'info';
+                newInfo.innerHTML = `
+                    <div class="label-info">상세 설명</div>
+                    <textarea></textarea>
+                `;
+        
+                // Find the location where we want to insert the new elements
+                const container = document.body;
+        
+                // Insert the new elements before the new-gigoo-btn buttons
+                const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                container.insertBefore(newInputYa, newGigooBtn);
+                container.insertBefore(newInfo, newGigooBtn);
+            }
+        </script>
+        
 </body>
 </html>
 
