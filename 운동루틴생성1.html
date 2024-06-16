@@ -39,8 +39,6 @@
 
         <!-- 운동기구 추가 자바스크립트  -->
         <button class="new-gigoo-btn" onclick="addExerciseEquipment()">운동기구 추가하기</button>
-        <button class="new-gigoo-btn">관련링크 추가하기</button>
-        
         <script>
             function addExerciseEquipment() {
                 // Create a new input-ya div
@@ -67,6 +65,81 @@
                 container.insertBefore(newInputYa, newGigooBtn);
                 container.insertBefore(newInfo, newGigooBtn);
             }
+        </script>
+
+
+        <!-- 링크 추가하기 자바스크립트 -->
+        <button class="new-gigoo-btn" onclick="addLink()">관련링크 추가하기</button>
+        <script>
+            function addExerciseEquipment() {
+                // Create a new input-ya div
+                const newInputYa = document.createElement('div');
+                newInputYa.className = 'input-ya';
+                newInputYa.innerHTML = `
+                    <input type="text" placeholder="운동 기구">
+                    <input type="text" placeholder="운동 시간">
+                `;
+        
+                // Create a new info div
+                const newInfo = document.createElement('div');
+                newInfo.className = 'info';
+                newInfo.innerHTML = `
+                    <div class="label-info">상세 설명</div>
+                    <textarea></textarea>
+                `;
+        
+                // Find the location where we want to insert the new elements
+                const container = document.body;
+        
+                // Insert the new elements before the new-gigoo-btn buttons
+                const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                container.insertBefore(newInputYa, newGigooBtn);
+                container.insertBefore(newInfo, newGigooBtn);
+            }
+        
+            function addLink() {
+                // Create a new link-input div
+                const newLinkInput = document.createElement('div');
+                newLinkInput.className = 'input-ya';
+                newLinkInput.innerHTML = `
+                    <input type="text" id="link-text" placeholder="링크 텍스트">
+                    <button onclick="confirmLink()">확인</button>
+                `;
+        
+                // Find the location where we want to insert the new element
+                const container = document.body;
+        
+                // Insert the new element before the new-gigoo-btn buttons
+                const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                container.insertBefore(newLinkInput, newGigooBtn);
+            }
+        
+            function confirmLink() {
+                const linkText = document.getElementById('link-text').value;
+                if (linkText) {
+                    // Create a new info div
+                    const newInfo = document.createElement('div');
+                    newInfo.className = 'link-info';
+                    newInfo.innerHTML = `
+                        <div class="label-info">관련링크</div>
+                      
+                        <div class="link-container">
+                            <div class="label-info">  </div>
+                            <a href="${linkText}" target="_blank">${linkText}</a>
+                        </div>
+                    `;
+
+                    // Find the location where we want to insert the new element
+                    const container = document.body;
+
+                    // Insert the new element before the new-gigoo-btn buttons
+                    const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                    container.insertBefore(newInfo, newGigooBtn);
+                } else {
+                    alert("링크를 입력하세요.");
+                }
+            }
+
         </script>
         
 </body>
@@ -218,6 +291,7 @@
 
         } 
 
+
         .new-gigoo-btn {
             width: 90%;
             height: 80px;
@@ -234,6 +308,32 @@
             cursor: pointer;
             color: #fff;
         }
+
+        .link-info {
+            width: 90%;
+            background: #222;
+            border-radius: 5px;
+            margin: 20px;
+            position: relative;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column; /* Add this line to make the content stack vertically */
+            align-items: flex-start; /* Align items to the start of the container */
+            padding: 10px; /* Add padding to give some space inside the container */
+        }
+
+        .link-info input {
+            width: calc(100% - 20px); /* Adjust width to fit within the padding */
+            height: 40px; /* Set a fixed height */
+            border: none;
+            background: #333;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px; /* Add padding inside the input box */
+            margin-top: 10px; /* Add margin to separate from the label above */
+        }
+
+
 
         @media (max-width: 600px) {
             .nav-bar {
