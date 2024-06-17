@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-time Chat</title>
+    <title>실시간 채팅</title>
     <style>
         body {
             background-color: black;
@@ -13,6 +13,21 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
+        }
+        #header {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #222;
+            border-bottom: 1px solid #444;
+        }
+        #header button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
         }
         #chat {
             flex: 1;
@@ -59,6 +74,9 @@
     </style>
 </head>
 <body>
+    <div id="header">
+        <button onclick="matchUser()">매칭하기</button>
+    </div>
     <div id="chat"></div>
     <div id="message-input">
         <input type="text" id="message" placeholder="Type a message...">
@@ -87,6 +105,11 @@
             messageElement.className = `message ${className}`;
             chat.appendChild(messageElement);
             chat.scrollTop = chat.scrollHeight; // Scroll to the bottom
+        }
+
+        function matchUser() {
+            // 매칭 기능 로직을 여기에 추가하세요
+            alert('매칭 기능이 아직 구현되지 않았습니다.');
         }
     </script>
 </body>
