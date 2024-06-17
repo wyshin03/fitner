@@ -28,9 +28,9 @@
         .new-routine-btn {
             width: 90%;
             height: 80px;
-            background:#1C1C1C ;
+            background: #1C1C1C;
             border-radius: 5px;
-            border: 2px solid #ff0000 ;
+            border: 2px solid #ff0000;
             margin: 20px auto;
             display: flex;
             align-items: center;
@@ -41,12 +41,12 @@
             cursor: pointer;
             color: #fff;
         }
-        /* .routine-grid {
-            position: relative;
-            padding: 20px;
-            max-width: 480px;
-            margin: 0px auto;
-        } */
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
         .routine-btn {
             background-color: #000;
@@ -54,12 +54,13 @@
             height: 200px;
             border: none;
             color: #fff;
-            margin: 20px auto;
-            padding: 10px;
-            padding-top: 20px;
+            margin: 20px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             font-size: 16px;
             cursor: pointer;
         }
@@ -67,7 +68,17 @@
         .routine-btn img {
             height: 180px; /* 원하는 높이로 설정 */
             width: auto; /* 비율에 맞게 너비 자동 조정 */
-            /* margin: 20px; */
+        }
+
+        .title {
+            color: #fff;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .routine-btn:first-of-type {
+            margin-left: 40px; /* 원하는 값으로 조정 */
         }
 
         @media (max-width: 600px) {
@@ -90,9 +101,11 @@
         <a href="#" class="nav-item">매칭하기</a>
     </div>
 
-    <button class="new-routine-btn" onclick="window.location.href='운동루틴생성1.html'"> + 새 루틴 만들기</button>
+    <div class="title">매칭자 루틴 목록</div>
 
+    <button class="new-routine-btn" onclick="window.location.href='운동루틴생성1.html'">+ 새 루틴 만들기</button>
 
+    <div class="container">
         <button class="routine-btn">
             <img src="C:\Users\USER\OneDrive\바탕 화면\project\사진\루틴사진1.png">
             왕초보 일주일 루틴
@@ -127,7 +140,6 @@
             <img src="C:\Users\USER\OneDrive\바탕 화면\project\사진\루틴사진1.png">
             유산소 일주일 루틴
         </button>
-    
+    </div>
 </body>
 </html>
-
