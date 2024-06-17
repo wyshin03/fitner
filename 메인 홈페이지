@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main home</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+        /*네비게이션 바*/
+        .nav-bar {
+            background-color: #ff0000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        /*매칭하기*/
+        .header {
+            background-color: #222;
+            text-align: center;
+            padding: 60px 20px 20px 20px;
+            position: relative;
+        
+        }
+
+        .header-content {
+            margin-top: 20px;
+        }
+
+
+        .header h1 {
+            font-size: 2em;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.em;
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .header button {
+            background-color: #d11a1a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 10px;
+        }
+       /*공지사항*/
+        section {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        section button {
+            background-color: #d11a1a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        /*운동관리 및 헬스장 찾기*/
+        .schedule-gym-finder {
+            display: flex;
+            gap: 10px;
+            background-color: #1c1c1c
+        }
+
+        .schedule, .gym-finder {
+            flex: 1;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .schedule {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            background-color: #3C3B3B;
+            width : 200px;
+            height: 200px;
+            border-radius: 35px;
+            text-align: left;
+            font-weight: bold;
+            flex-direction: column;
+            background-image: url('path/to/schedule-icon.png'); /* Add your image path here */
+            background-repeat: no-repeat;
+            background-position: center 10px;
+        }
+
+        .gym-finder {
+            background-image: url('path_to_image.png');
+            background-position: 100px 100px; /* Set the coordinates */
+            background-size: cover;
+            background-color: #3C3B3B;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 300px;
+            height: 115px;
+            border-radius: 35px;
+            text-align: left;
+            font-weight: bold;
+            padding: 0.px;
+            flex-direction: column;
+            background-image: url('path/to/gym-finder-icon.png'); /* Add your image path here */
+            background-repeat: no-repeat;
+            background-position: center 10px;
+        }
+
+
+        .announcements {
+            text-align: left;
+            padding: 20px;
+            position: relative;
+        }
+
+     
+
+        .announcements p {
+            margin: 5px 0;
+        }
+
+        .announcements p.date {
+            position: absolute;
+            top: 71px;
+            right: 30px;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* Updated profile section */
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #222;
+            border-radius: px;
+        }
+
+
+        /*프로필 사진 설정*/ 
+        .profile .image-placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .profile-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .profile-text h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .profile-text p {
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+
+        .profile-text button {
+            background-color: #d11a1a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: bold;
+            align-self: flex-end;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="#" class="nav-item">홈</a>
+        <a href="#" class="nav-item">일정 관리</a>
+        <a href="#" class="nav-item">루틴</a>
+        <a href="#" class="nav-item">운동 목록</a>
+        <a href="#" class="nav-item">매칭하기</a>
+    </div>
+    <header class="header">
+        <div class="profile-placeholder"></div>
+        <div class="header-content">
+            <h1>최고의 운동 메이트를 찾으세요.</h1>
+            <p>운동 목표와 능력에 맞춘 운동 메이트를 찾아 최고의 시너지 효과를 내세요.</p>
+            <button>매칭하기</button>
+        </div>
+    </header>
+    <main>
+        <section class="profile">
+            <div class="image-placeholder">사진 첨부 예정</div>
+            <div class="profile-text">
+                <h2>끝없는 도전!</h2>
+                <p>상대에게 자신감 있는 나 자신을 보여주세요!
+                </p>
+                <button>프로필 조회</button>
+            </div>
+        </section>
+        <section class="schedule-gym-finder">
+            <button class="button-section schedule" onclick="handleButtonClick('schedule')">
+                <h2>운동 관리</h2>
+                <p>나만의 운동 일정을 기록하세요!</p>
+            </div>
+            <button class="button-section gym-finder" onclick="handleButtonClick('gym-finder')">
+                <h2>주변 헬스장 찾기</h2>
+            </div>
+        </section>
+        <section class="announcements">
+            <h2>공지사항</h2>
+            <p>FITNER 정식 오픈!</p>
+            <p class="date">2024-06-20</p>
+        </section>
+    </main>
+</body>
+</html>
