@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>평가하기</title>
+    <style>
+        body {
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav-bar {
+            background-color: #ff0000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            margin: 50px auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between; /* 왼쪽과 오른쪽 정렬 */
+            align-items: flex-start; /* 위쪽 정렬 */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            flex: 1; /* 동일한 공간 차지 */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        input[type="number"] {
+            width: 94%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        textarea {
+            width: 94%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            resize: none;
+            height: 100px;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .btn {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+        }
+
+        @media (max-width: 600px) {
+            .nav-bar {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                margin-bottom: 5px;
+            }
+
+            .container {
+                flex-direction: column; /* 작은 화면에서 세로 정렬 */
+                align-items: center;
+            }
+
+            .form-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="#" class="nav-item">홈</a>
+        <a href="#" class="nav-item">일정관리</a>
+        <a href="#" class="nav-item">루틴</a>
+        <a href="#" class="nav-item">운동목록</a>
+        <a href="#" class="nav-item">매칭하기</a>
+    </div>
+    
+    <div class="container">
+        <div class="form-group">
+            <h1>회원 평가하기</h1>
+            <form id="ratingForm">
+                <div class="form-group">
+                    <label for="starRating">별점 (1에서 5 사이의 숫자)</label>
+                    <input type="number" id="starRating" name="starRating" min="1" max="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="review">리뷰</label>
+                    <textarea id="review" name="review" placeholder="여기에 리뷰를 입력하세요..." required></textarea>
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn">확인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('ratingForm');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const starRating = document.getElementById('starRating').value;
+            const review = document.getElementById('review').value;
+
+            console.log('별점:', starRating);
+            console.log('리뷰:', review);
+
+            // 여기서 서버로 데이터 전송하는 코드 추가 가능
+        });
+    </script>
+</body>
+</html>
