@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>검정색 배경+바</title>
+    <title>makeRoutine</title>
 </head>
+
 <body>
     <div class="nav-bar">
         <a href="#" class="nav-item">홈</a>
@@ -19,10 +20,12 @@
     </div>
 
     <div class="upload-image">
-        <label for="file-upload" class="custom-file-upload">
-            파일 선택
-        </label>
-        <input id="file-upload" type="file" accept="image/*">
+        <form action = "/upload" method = "POST" enctype = "multipart/form-data">
+            <input type = "file" accept = "image/*" class ="upload-image label" id = "file-upload" name = "file">
+                <label for="file-upload" class="custom-file-upload">파일 선택</label>
+                <button type = "submit">업로드</button>
+        </form>
+        <script src = "js/makeRoutine.js"></script>
     </div>
 
     <div class="input-ya">
@@ -35,292 +38,307 @@
         <textarea></textarea>
     </div>
 
-    <!-- 운동기구 추가 및 관련 링크 추가 버튼 -->
-    <div class="button-container">
+        <!-- 운동기구 추가 자바스크립트  -->
         <button class="new-gigoo-btn" onclick="addExerciseEquipment()">운동기구 추가하기</button>
-        <button class="new-gigoo-btn" onclick="addLink()">관련링크 추가하기</button>
-    </div>
-
-    <button class="new-routine-btn"> 루틴 생성하기 </button>
-
-    <script>
-        function addExerciseEquipment() {
-            const newInputYa = document.createElement('div');
-            newInputYa.className = 'input-ya';
-            newInputYa.innerHTML = `
-                <input type="text" placeholder="운동 기구">
-                <input type="text" placeholder="운동 시간">
-            `;
-            const newInfo = document.createElement('div');
-            newInfo.className = 'info';
-            newInfo.innerHTML = `
-                <div class="label-info">상세 설명</div>
-                <textarea></textarea>
-            `;
-            const container = document.body;
-            const newGigooBtn = document.querySelector('.button-container');
-            container.insertBefore(newInputYa, newGigooBtn);
-            container.insertBefore(newInfo, newGigooBtn);
-        }
-
-        function addLink() {
-            const newLinkInput = document.createElement('div');
-            newLinkInput.className = 'input-ya';
-            newLinkInput.innerHTML = `
-                <input type="text" id="link-text" placeholder="링크 텍스트">
-                <button onclick="confirmLink()">확인</button>
-            `;
-            const container = document.body;
-            const newGigooBtn = document.querySelector('.button-container');
-            container.insertBefore(newLinkInput, newGigooBtn);
-        }
-
-        function confirmLink() {
-            const linkText = document.getElementById('link-text').value;
-            if (linkText) {
-                const newInfo = document.createElement('div');
-                newInfo.className = 'link-info';
-                newInfo.innerHTML = `
-                    <div class="label-info">관련링크</div>
-                    <div class="link-container">
-                        <a href="${linkText}" target="_blank">${linkText}</a>
-                    </div>
+        <script>
+            function addExerciseEquipment() {
+                // Create a new input-ya div
+                const newInputYa = document.createElement('div');
+                newInputYa.className = 'input-ya';
+                newInputYa.innerHTML = `
+                    <input type="text" placeholder="운동 기구">
+                    <input type="text" placeholder="운동 시간">
                 `;
+        
+                // Create a new info div
+                const newInfo = document.createElement('div');
+                newInfo.className = 'info';
+                newInfo.innerHTML = `
+                    <div class="label-info">상세 설명</div>
+                    <textarea></textarea>
+                `;
+        
+                // Find the location where we want to insert the new elements
                 const container = document.body;
-                const newGigooBtn = document.querySelector('.button-container');
+        
+                // Insert the new elements before the new-gigoo-btn buttons
+                const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                container.insertBefore(newInputYa, newGigooBtn);
                 container.insertBefore(newInfo, newGigooBtn);
-            } else {
-                alert("링크를 입력하세요.");
             }
-        }
-    </script>
+        </script>
+
+
+        <!-- 링크 추가하기 자바스크립트 -->
+        <button class="new-gigoo-btn" onclick="addLink()">관련링크 추가하기</button>
+        <script>
+            function addExerciseEquipment() {
+                // Create a new input-ya div
+                const newInputYa = document.createElement('div');
+                newInputYa.className = 'input-ya';
+                newInputYa.innerHTML = `
+                    <input type="text" placeholder="운동 기구">
+                    <input type="text" placeholder="운동 시간">
+                `;
+        
+                // Create a new info div
+                const newInfo = document.createElement('div');
+                newInfo.className = 'info';
+                newInfo.innerHTML = `
+                    <div class="label-info">상세 설명</div>
+                    <textarea></textarea>
+                `;
+        
+                // Find the location where we want to insert the new elements
+                const container = document.body;
+        
+                // Insert the new elements before the new-gigoo-btn buttons
+                const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                container.insertBefore(newInputYa, newGigooBtn);
+                container.insertBefore(newInfo, newGigooBtn);
+            }
+        
+            function addLink() {
+                // Create a new link-input div
+                const newLinkInput = document.createElement('div');
+                newLinkInput.className = 'input-ya';
+                newLinkInput.innerHTML = `
+                    <input type="text" id="link-text" placeholder="링크 텍스트">
+                    <button onclick="confirmLink()">확인</button>
+                `;
+        
+                // Find the location where we want to insert the new element
+                const container = document.body;
+        
+                // Insert the new element before the new-gigoo-btn buttons
+                const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                container.insertBefore(newLinkInput, newGigooBtn);
+            }
+        
+            function confirmLink() {
+                const linkText = document.getElementById('link-text').value;
+                if (linkText) {
+                    // Create a new info div
+                    const newInfo = document.createElement('div');
+                    newInfo.className = 'link-info';
+                    newInfo.innerHTML = `
+                        <div class="label-info">관련링크</div>
+                      
+                        <div class="link-container">
+                            <div class="label-info">  </div>
+                            <a href="${linkText}" target="_blank">${linkText}</a>
+                        </div>
+                    `;
+
+                    // Find the location where we want to insert the new element
+                    const container = document.body;
+
+                    // Insert the new element before the new-gigoo-btn buttons
+                    const newGigooBtn = document.querySelector('.new-gigoo-btn');
+                    container.insertBefore(newInfo, newGigooBtn);
+                } else {
+                    alert("링크를 입력하세요.");
+                }
+            }
+
+        </script>   
+            
 </body>
 </html>
 
 <style>
-    body {
-        background-color: #000000;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
+        body {
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;           
+        }
 
-    .nav-bar {
-        background-color: #ff0000;
-        color: #fff;
-        display: flex;
-        justify-content: space-around;
-        padding: 20px;
-    }
-
-    .nav-item {
-        text-decoration: none;
-        color: #fff;
-    }
-
-    .input-name {
-        width: 30%;
-        height: 40px;
-        background: #000;
-        border-radius: 5px;
-        border-bottom: 2px #ff0000 solid;
-        margin: 20px;
-        position: relative;
-        margin-bottom: 50px;
-    }
-
-    .input-name input {
-        width: calc(100% - 40px);
-        height: 100%;
-        border: none;
-        background: transparent;
-        font-size: 16px;
-        font-family: 'Rubik', sans-serif;
-        font-weight: 300;
-        color: #fff;
-        padding: 0 20px;
-    }
-
-    .input-ya {
-        width: 90%;
-        height: 40px;
-        background: #000;
-        border-radius: 5px;
-        border-bottom: 2px #ff0000 solid;
-        margin: 20px;
-        position: relative;
-        margin: 50px auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .input-ya input {
-        width: calc(100% - 40px);
-        height: 100%;
-        border: none;
-        background: transparent;
-        font-size: 16px;
-        font-family: 'Rubik', sans-serif;
-        font-weight: 300;
-        color: #fff;
-        padding: 0 20px;
-    }
-
-    .upload-image {
-        width: 90%;
-        height: 200px;
-        background: #333;
-        border-radius: 5px;
-        border: 2px solid #555;
-        margin: 20px auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 16px;
-        font-family: 'Arial', sans-serif;
-    }
-
-    .upload-image input[type="file"] {
-        width: 100%;
-        height: 185px;
-        border: none;
-        background: #333;
-        color: #fff;
-        font-size: 16px;
-        padding: 5px;
-        border-radius: 5px;
-        cursor: pointer;
-        display: none;
-    }
-
-    .upload-image label {
-        background-color: #ff0000;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    .label-info {
-        font-size: 20px;
-        font-weight: 300;
-        color: #C9C9C9;
-        font-family: Rubik;
-        word-wrap: break-word;
-        position: absolute;
-        top: -30px;
-        left: 20px; 
-        transform: translateX(-10%);
-    }
-
-    .info {
-        width: 90%;
-        height: 200px;
-        background: #222;
-        border-radius: 5px;
-        margin: 20px;
-        position: relative;
-        margin: 50px auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .info textarea {
-        width: calc(100% - 40px);
-        height: 100%;
-        border: none;
-        background: transparent;
-        font-size: 16px;
-        font-family: 'Rubik', sans-serif;
-        font-weight: 300;
-        color: #fff;
-        padding: 0 20px;
-    }
-
-    .new-routine-btn {
-        width: 90%;
-        height: 80px;
-        background:#1C1C1C;
-        border-radius: 5px;
-        border: 2px solid #ff0000;
-        margin: 20px auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 700;
-        cursor: pointer;
-        color: #fff;
-    }
-
-    .button-container {
-        width: 90%;
-        margin: 20px auto;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .new-gigoo-btn {
-        width: 48%;
-        height: 50px;
-        background:#1C1C1C;
-        border-radius: 5px;
-        border: 2px solid #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 15px;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 700;
-        cursor: pointer;
-        color: #fff;
-    }
-
-    .link-info {
-        width: 90%;
-        background: #222;
-        border-radius: 5px;
-        margin: 20px;
-        position: relative;
-        margin: 50px auto;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-    }
-
-    .link-info input {
-        width: calc(100% - 20px);
-        height: 40px;
-        border: none;
-        background: #333;
-        border-radius: 5px;
-        color: #fff;
-        padding: 10px;
-        margin-top: 10px;
-    }
-
-    @media (max-width: 600px) {
         .nav-bar {
-            flex-direction: column;
+            background-color: #ff0000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
         }
 
         .nav-item {
-            margin-bottom: 5px;
+            text-decoration: none;
+            color: #fff;
         }
 
-        .button-container {
-            flex-direction: column;
+        .input-name {
+            width: 30%;
+            height: 40px;
+            background: #000;
+            border-radius: 5px;
+            border-bottom: 2px #ff0000 solid;
+            margin: 20px;
+            position: relative;
+            margin-bottom : 50px;
         }
+        
+         .input-name input {
+            width: calc(100% - 40px);
+            height: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            color: #fff;
+            padding: 0 20px;
+        } 
+
+        .input-ya {
+            width: 90%;
+            height: 40px;
+            background: #000;
+            border-radius: 5px;
+            border-bottom: 2px #ff0000 solid;
+            margin: 20px;
+            position: relative;
+            margin : 50px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;    
+        }
+        
+        .input-ya input {
+            width: calc(100% - 40px);
+            height: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            color: #fff;
+            padding: 0 20px;
+        } 
+
+        .upload-image {
+            width: 90%;
+            height: 200px;
+            background: #333; /* 회색 배경 */
+            border-radius: 5px;
+            border: 2px solid #555; /* 더 어두운 회색 테두리 */
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .upload-image input[type="file"] {
+            width: 100%;
+            height: 185px;
+            border: none;
+            background: #333; /* 어두운 회색 배경 */
+            color: #fff;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .upload-image label {
+            background-color: #ff0000; /* 빨간색 배경 */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .label-info {
+            font-size: 20px;
+            font-weight: 300;
+            color: #C9C9C9;
+            font-family: Rubik;
+            word-wrap: break-word;
+            position: absolute;
+            top: -30px; /* Adjust as needed to position it properly */
+            left: 20px; 
+            transform: translateX(-10%);
+        }
+
+        .info {
+            width: 90%;
+            height: 200px;
+            background: #222;
+            border-radius: 5px;
+            
+            margin: 20px;
+            position: relative;
+            margin : 50px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;   
+        }
+        
+        .info textarea {
+            width: calc(100% - 40px);
+            height: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            color: #fff;
+            padding: 0 20px;
+        } 
 
         .new-gigoo-btn {
-            width: 100%;
-            margin-bottom: 10px;
+            width: 90%;
+            height: 80px;
+            background:#1C1C1C ;
+            border-radius: 5px;
+            border: 2px solid #ff0000 ;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            color: #fff;
         }
-    }
+
+        .link-info {
+            width: 90%;
+            background: #222;
+            border-radius: 5px;
+            margin: 20px;
+            position: relative;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column; /* Add this line to make the content stack vertically */
+            align-items: flex-start; /* Align items to the start of the container */
+            padding: 10px; /* Add padding to give some space inside the container */
+        }
+
+        .link-info input {
+            width: calc(100% - 20px); /* Adjust width to fit within the padding */
+            height: 40px; /* Set a fixed height */
+            border: none;
+            background: #333;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px; /* Add padding inside the input box */
+            margin-top: 10px; /* Add margin to separate from the label above */
+        }
+
+        @media (max-width: 600px) {
+            .nav-bar {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                margin-bottom: 5px;
+            }
+        }
 </style>
