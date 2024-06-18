@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 및 리뷰</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #1C1C1C;
+            color: white;
+            font-family: 'Noto Sans', sans-serif;
+            height: 100vh; /* 전체 화면 높이 설정 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .rating {
+            color: #ff0000;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .fixed-text {
+            color: white;
+            font-size: 16px;
+        }
+
+        .reviews {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .chat-btn {
+            padding: 20px 100px;
+            font-size: 16px;
+            border: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            margin-bottom : 40px;
+        }
+
+    </style>
+</head>
+<body>
+
+<button class="chat-btn" onclick="window.location.href='매칭-4-채팅기능.html'">채팅하기 </button>
+    
+
+<div class="container">
+    <!-- 백엔드에서 가져온 회원 정보 및 리뷰 -->
+    <img class="profile-pic" id="profilePic" src="" alt="회원 사진">
+    <div class="rating">
+        <span id="userRating"></span><span class="fixed-text">/5</span>
+    </div>
+    <div class="reviews" id="reviews">
+        <h3>리뷰</h3>
+        <!-- 리뷰 데이터는 JavaScript에서 추가될 예정 -->
+    </div>
+</div>
+
+<script>
+    // 백엔드에서 가져온 데이터라고 가정
+    const memberData = {
+        profilePicture: 'backend/member-profile-picture.jpg',
+        rating: 5, // 백엔드에서 가져온 평점 데이터
+        reviews: [
+            '이 회원은 정말 좋아요! 너무 친절하고 도움이 많이 되었습니다.',
+            '우리의 운동 메이트가 되어줘서 정말 감사합니다!'
+        ]
+    };
+
+    // 프로필 사진 설정
+    const profilePic = document.getElementById('profilePic');
+    profilePic.src = memberData.profilePicture;
+
+    // 평점 표시 (정수로 변환하여 표시)
+    const userRating = document.getElementById('userRating');
+    userRating.textContent = memberData.rating;
+
+    // 리뷰 표시
+    const reviewsContainer = document.getElementById('reviews');
+    memberData.reviews.forEach(review => {
+        const reviewElement = document.createElement('div');
+        reviewElement.textContent = review;
+        reviewsContainer.appendChild(reviewElement);
+    });
+</script>
+
+</body>
+</html>
