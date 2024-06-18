@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검정색 배경+바</title>
+
+</head>
+
+<body>
+    <div class="nav-bar">
+        <a href="#" class="nav-item">홈</a>
+        <a href="#" class="nav-item">일정관리</a>
+        <a href="#" class="nav-item">루틴</a>
+        <a href="#" class="nav-item">운동목록</a>
+        <a href="#" class="nav-item">매칭하기</a>
+    </div>
+
+    <div class="btn-container">
+        <div class="my-mate">운동메이트 찾기</div>
+        <button class="find-mate-btn" onclick="window.location.href='매칭-5-나의 메이트 목록.html'">나의 운동메이트 </button>
+    </div>
+
+    <div class="good">
+        최고의 운동 메이트를 찾아보세요.
+    </div>
+
+    <div class="filter-container">
+        <select class="filter-select">
+            <option value="rating">별점</option>
+            <option value="latest">최신</option>
+            <option value="location">장소</option>
+        </select>
+    </div>
+
+    
+</body>
+
+<style>
+        body {
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            position: relative; 
+            
+        }
+
+        .nav-bar {
+            background-color: #ff0000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .btn-container .find-mate-btn, .btn-container .my-mate {
+            flex: 1;
+            height: 70px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .find-mate-btn {
+            background-color: #444343;
+            color: white;
+        }
+
+        .my-mate {
+            background-color: #444343;
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .good {
+            color: #ffffff;
+            font-size: 25px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .filter-container {
+            position: absolute; /* 추가 */
+            right: 20px; /* 추가 */
+            top: 280px; /* 원하는 위치에 맞게 조정 */
+            margin-top: 20px;
+        }
+
+        .filter-select {
+            background-color: #B1B1B1;
+            color: #000f;
+            border: none;
+            font-size: 16px;
+            padding: 10px;
+            cursor: pointer;
+            width: 80px;
+        }
+
+
+        @media (max-width: 600px) {
+            .nav-bar {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                margin-bottom: 5px;
+            }
+            .btn-container {
+                flex-direction: column;
+            }
+
+            .btn-container .find-mate-btn, .btn-container .my-mate {
+                width: 100%;
+            }
+        }
+
+</style>
