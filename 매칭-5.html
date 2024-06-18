@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메이트 친구 보기</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+        }
+
+        .nav-bar {
+            background-color: #ff0000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .matcher-box {
+            background-color: #000;
+            width: 200px;
+            height: 250px;
+            border: none;
+            color: #fff;
+            margin: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .matcher-box img {
+            height: 180px;
+            width: auto;
+        }
+
+        .matcher-box:first-of-type {
+            margin-left: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .chat-btn, .rou-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .chat-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .rou-btn {
+            background-color: #444343;
+            color: white;
+        }
+
+        .btn-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .btn-container .find-mate-btn, .btn-container .my-mate {
+            flex: 1;
+            height: 70px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .find-mate-btn {
+            background-color: #444343;
+            color: white;
+        }
+
+        .my-mate {
+            background-color: #444343;
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .nav-bar {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                margin-bottom: 5px;
+            }
+
+            .btn-container {
+                flex-direction: column;
+            }
+
+            .btn-container .find-mate-btn, .btn-container .my-mate {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="#" class="nav-item">홈</a>
+        <a href="#" class="nav-item">일정관리</a>
+        <a href="#" class="nav-item">루틴</a>
+        <a href="#" class="nav-item">운동목록</a>
+        <a href="#" class="nav-item">매칭하기</a>
+    </div>
+
+    <div class="btn-container">
+        <button class="find-mate-btn" onclick="window.location.href='매칭-1.html'">운동메이트 찾기</button>
+        <div class="my-mate">나의 운동메이트</div>
+    </div>
+
+    <div class="container" id="matcher-container">
+        <!-- 친구 박스가 여기에 동적으로 추가될 것입니다. -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:3000/matchers') // 백엔드에서 데이터를 가져오는 예시
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('matcher-container');
+                    data.forEach(matcher => {
+                        const matcherBox = document.createElement('div');
+                        matcherBox.className = 'matcher-box';
+                        matcherBox.innerHTML = `
+                            <img src="${matcher.image}" alt="루틴 이미지">
+                            ${matcher.name}
+                            <div class="button-container">
+                                <button class="chat-btn" onclick="window.location.href='채팅기능.html'">채팅하기</button>
+                                <button class="rou-btn" onclick="window.location.href='채팅기능.html'">루틴조회</button>
+                            </div>
+                        `;
+                        container.appendChild(matcherBox);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+</html>
