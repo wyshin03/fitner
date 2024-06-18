@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routine1</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+        }
+
+        .nav-bar {
+            background-color: #ff0000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .matcher-box {
+            background-color: #000;
+            width: 200px;
+            height: 250px; /* 버튼을 감당하기 위해 높이를 조정 */
+            border: none;
+            color: #fff;
+            margin: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .matcher-box img {
+            height: 180px; /* 원하는 높이로 설정 */
+            width: auto; /* 비율에 맞게 너비 자동 조정 */
+        }
+
+        .matcher-box:first-of-type {
+            margin-left: 40px; /* 원하는 값으로 조정 */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .chat-btn, .rou-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .chat-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .rou-btn {
+            background-color: #444343;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .nav-bar {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="#" class="nav-item">홈</a>
+        <a href="#" class="nav-item">일정관리</a>
+        <a href="#" class="nav-item">루틴</a>
+        <a href="#" class="nav-item">운동목록</a>
+        <a href="#" class="nav-item">매칭하기</a>
+    </div>
+
+    <div class="container" id="matcher-container">
+        <!-- 친구 박스가 여기에 동적으로 추가될 것입니다. -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:3000/matchers') // 백엔드에서 데이터를 가져오는 예시
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('matcher-container');
+                    data.forEach(matcher => {
+                        const matcherBox = document.createElement('div');
+                        matcherBox.className = 'matcher-box';
+                        matcherBox.innerHTML = `
+                            <img src="${matcher.image}" alt="루틴 이미지">
+                            ${matcher.name}
+                            <div class="button-container">
+                                <button class="chat-btn" onclick="window.location.href='채팅기능.html'">채팅하기</button>
+                                <button class="rou-btn" onclick="window.location.href='채팅기능.html'">루틴조회</button>
+                            </div>
+                        `;
+                        container.appendChild(matcherBox);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+</html>
