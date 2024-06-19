@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>일정 관리 페이지</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Apple SD Gothic Neo', sans-serif;
             background-color: #1c1c1c;
             color: #fff;
         }
 
-        /* 네비게이션 바 */
         .nav-container {
             background-color: #ff0000;
             color: #fff;
@@ -37,12 +37,6 @@
             border-radius: 5px;
         }
 
-        /* 서브 네비게이션 바 스타일링 */
-        .nav-container:hover .sub-nav-container {
-            visibility: visible;
-            opacity: 1;
-        }
-
         .sub-nav-container {
             background-color: #ff0000;
             visibility: hidden;
@@ -56,6 +50,11 @@
             flex-direction: column;
             align-items: center;
             transition: visibility 0s, opacity 0.5s ease-in-out;
+        }
+
+        .nav-container:hover .sub-nav-container {
+            visibility: visible;
+            opacity: 1;
         }
 
         .sub-nav-row {
@@ -78,13 +77,12 @@
             border-radius: 5px;
         }
 
-        /* 메인 컨텐츠 스타일링 */
         .content-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-top: 20px; /* 네비게이션 바 아래에 여백 추가 */
+            margin-top: 20px;
         }
 
         .calendar {
@@ -92,7 +90,8 @@
             border-radius: 15px;
             padding: 20px;
             text-align: center;
-            width: 400px; /* 크기 확대 */
+            width: 90%;
+            max-width: 400px;
             color: #000;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
@@ -109,10 +108,10 @@
 
         .calendar th,
         .calendar td {
-            padding: 15px; /* 크기 확대 */
+            padding: 10px;
             border: none;
             text-align: center;
-            font-size: 18px; /* 폰트 크기 확대 */
+            font-size: 16px;
         }
 
         .calendar th {
@@ -156,45 +155,48 @@
             background-color: rgba(255, 0, 0, 0.8);
         }
 
-        .exercise-log {
+        .exercise-log,
+        .exercise-record {
             background-color: #fff;
             border-radius: 15px;
             padding: 20px;
-            width: 400px;
+            width: 90%;
+            max-width: 400px;
             color: #000;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .exercise-log h3 {
-            margin-top: 0;
-        }
-
-        .exercise-log p {
-            margin: 10px 0;
+        .exercise-log h3,
+        .exercise-record h4 {
+            margin: 0 0 10px;
+            text-align: center;
         }
 
         .exercise-log input,
-        .exercise-log textarea {
+        .exercise-log textarea,
+        .exercise-log button {
             width: calc(100% - 20px);
             padding: 10px;
-            margin-bottom: 10px;
+            margin-top: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
         .exercise-log button {
-            width: 100%;
             background-color: #ff0000;
             color: #fff;
             border: none;
-            border-radius: 5px;
-            padding: 10px;
             cursor: pointer;
             font-weight: bold;
         }
 
         .exercise-log button:hover {
             background-color: rgba(255, 0, 0, 0.8);
+        }
+
+        .exercise-record p {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -246,12 +248,16 @@
                 </tbody>
             </table>
         </div>
+        <div class="exercise-record" id="exercise-record">
+            <h4 id="record-date"></h4>
+            <p id="record-description">오늘의 운동 :</p>
+            <p id="record-time">운동한 시간 : 00분</p>
+        </div>
         <div class="exercise-log">
-            <h3 id="selected-date">날짜를 선택하세요</h3>
-            <p id="exercise-log-text">오늘의 운동: </p>
-            <p id="exercise-time-text">운동한 시간: 0분</p>
-            <input type="text" id="exercise-input" placeholder="오늘의 운동을 입력하세요...">
-            <input type="number" id="time-input" placeholder="운동한 시간을 입력하세요 (분)">
+            <h3>운동 기록</h3>
+            <input type="text" id="exercise-date" readonly placeholder="날짜를 선택하세요">
+            <textarea id="exercise-description" rows="4" placeholder="오늘의 운동을 입력하세요..."></textarea>
+            <input type="number" id="exercise-time" placeholder="운동한 시간을 입력하세요 (분)">
             <button id="save-log">저장</button>
         </div>
     </div>
@@ -262,6 +268,15 @@
         const currentDay = today.getDate();
         const monthYear = document.getElementById("month-year");
         const calendarBody = document.getElementById("calendar-body");
+        const exerciseDate = document.getElementById("exercise-date");
+        const exerciseDescription = document.getElementById("exercise-description");
+        const exerciseTime = document.getElementById("exercise-time");
+        const exerciseRecord = document.getElementById("exercise-record");
+        const recordDate = document.getElementById("record-date");
+        const recordDescription = document.getElementById("record-description");
+        const recordTime = document.getElementById("record-time");
+
+        const exerciseLogs = {};
 
         const months = [
             "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
@@ -283,7 +298,6 @@
                     const cell = document.createElement("td");
 
                     if (i === 0 && j < firstDay) {
-                        cell.appendChild(document.createTextNode(""));
                         row.appendChild(cell);
                     } else if (date > daysInMonth) {
                         break;
@@ -300,7 +314,21 @@
                                 selected.classList.remove("selected");
                             }
                             cell.classList.add("selected");
-                            updateExerciseLog(date, month, year);
+                            const selectedDate = cell.textContent.padStart(2, '0');
+                            const formattedDate = `${year}년 ${months[month]}월 ${selectedDate}일`;
+                            exerciseDate.value = formattedDate;
+
+                            const logKey = `${year}-${months[month]}-${selectedDate}`;
+                            if (exerciseLogs[logKey]) {
+                                const log = exerciseLogs[logKey];
+                                recordDate.textContent = formattedDate;
+                                recordDescription.textContent = `오늘의 운동 : ${log.description}`;
+                                recordTime.textContent = `운동한 시간 : ${log.time}분`;
+                            } else {
+                                recordDate.textContent = formattedDate;
+                                recordDescription.textContent = '오늘의 운동 :';
+                                recordTime.textContent = '운동한 시간 : 00분';
+                            }
                         });
 
                         row.appendChild(cell);
@@ -312,33 +340,6 @@
             }
         };
 
-        const updateExerciseLog = (date, month, year) => {
-            const selectedDateElement = document.getElementById("selected-date");
-            selectedDateElement.textContent = `${year}년 ${months[month]}월 ${date}일`;
-
-            const exerciseLogText = document.getElementById("exercise-log-text");
-            const exerciseTimeText = document.getElementById("exercise-time-text");
-
-            const exerciseLog = localStorage.getItem(`${year}-${months[month]}-${date}-exercise`) || "운동 기록이 없습니다.";
-            const exerciseTime = localStorage.getItem(`${year}-${months[month]}-${date}-time`) || "0";
-
-            exerciseLogText.textContent = `오늘의 운동: ${exerciseLog}`;
-            exerciseTimeText.textContent = `운동한 시간: ${exerciseTime}분`;
-        };
-
-        document.getElementById("save-log").addEventListener("click", () => {
-            const selectedDateText = document.getElementById("selected-date").textContent;
-            const [year, month, date] = selectedDateText.match(/\d+/g);
-
-            const exerciseInput = document.getElementById("exercise-input").value;
-            const timeInput = document.getElementById("time-input").value;
-
-            localStorage.setItem(`${year}-${month}-${date}-exercise`, exerciseInput);
-            localStorage.setItem(`${year}-${month}-${date}-time`, timeInput);
-
-            updateExerciseLog(date, parseInt(month) - 1, parseInt(year));
-        });
-
         document.getElementById("prev-month").addEventListener("click", () => {
             currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
             currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
@@ -349,6 +350,22 @@
             currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
             currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
             renderCalendar(currentMonth, currentYear);
+        });
+
+        document.getElementById("save-log").addEventListener("click", () => {
+            const date = exerciseDate.value;
+            const description = exerciseDescription.value;
+            const time = exerciseTime.value;
+
+            if (date && description && time) {
+                const logKey = `${date.slice(0, 4)}-${date.slice(6, 8)}-${date.slice(10, 12)}`;
+                exerciseLogs[logKey] = { description, time };
+                alert(`운동 기록이 저장되었습니다:\n날짜: ${date}\n운동: ${description}\n시간: ${time}분`);
+                exerciseDescription.value = "";
+                exerciseTime.value = "";
+            } else {
+                alert("모든 필드를 입력하세요.");
+            }
         });
 
         renderCalendar(currentMonth, currentYear);
