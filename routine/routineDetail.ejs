@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>루틴 상세 정보</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .nav-bar {
+            background-color: #ff0000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .routine-detail {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1C1C1C;
+            border-radius: 5px;
+            border: 2px solid #ff0000;
+        }
+
+        .routine-detail img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .routine-detail h2 {
+            margin-top: 10px;
+        }
+
+        .routine-detail p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="#" class="nav-item">홈</a>
+        <a href="#" class="nav-item">일정관리</a>
+        <a href="#" class="nav-item">루틴</a>
+        <a href="#" class="nav-item">운동목록</a>
+        <a href="#" class="nav-item">매칭하기</a>
+    </div>
+
+    <div class="routine-detail">
+        <img src="/fitner/uploads/<%= routine.name %>/<%= routine.file %>" alt="<%= routine.name %>">
+        <h2><%= routine.name %></h2>
+        <p>운동 기구: <%= routine.equipment %></p>
+        <p>운동 시간: <%= routine.time %></p>
+        <p>설명: <%= routine.description %></p>
+        <p>관련 링크:
+            <% routine.link.forEach(function(link) { %>
+                <br><a href="<%= link %>" target="_blank" style="color: #ff0000;"><%= link %></a>
+            <% }); %>
+        </p>
+    </div>
+</body>
+</html>
