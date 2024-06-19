@@ -155,21 +155,9 @@
             background-color: rgba(255, 0, 0, 0.8);
         }
 
-        .exercise-log{
-             background-color: #fff;
-            font-family: 'Apple SD Gothic Neo', sans-serif;
-            text-align: center;
-            border-radius: 15px;
-            padding: 20px;
-            width: 90%;
-            max-width: 400px;
-            color: #000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+        .exercise-log,
         .exercise-record {
             background-color: #fff;
-            font-family: 'Apple SD Gothic Neo', sans-serif;
             border-radius: 15px;
             padding: 20px;
             width: 90%;
@@ -196,7 +184,7 @@
         }
 
         .exercise-log button {
-            background-color: #000000;
+            background-color: #ff0000;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -204,7 +192,7 @@
         }
 
         .exercise-log button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(255, 0, 0, 0.8);
         }
 
         .exercise-record p {
@@ -214,14 +202,14 @@
 </head>
 <body>
     <div class="nav-container">
-        <a href="#" class="nav-item">홈</a>
-        <a href="#" class="nav-item">일정 관리</a>
-        <a href="#" class="nav-item">루틴</a>
-        <a href="#" class="nav-item">운동 목록</a>
-        <a href="#" class="nav-item">매칭하기</a>
+        <a href="/home" class="nav-item">홈</a>
+        <a href="/calendar" class="nav-item">일정 관리</a>
+        <a href="/routine" class="nav-item">루틴</a>
+        <a href="dead/1" class="nav-item">운동 목록</a>
+        <a href="/matchlist" class="nav-item">매칭하기</a>
         <div class="sub-nav-container">
             <div class="sub-nav-row">
-                <a href="#" class="sub-nav-item">로그인</a>
+                <a href="/login" class="sub-nav-item">로그인</a>
                 <a href="#" class="sub-nav-item">주별 관리</a>
                 <a href="#" class="sub-nav-item">나의 루틴</a>
                 <a href="#" class="sub-nav-item">가이드/메모</a>
@@ -261,15 +249,16 @@
             </table>
         </div>
         <div class="exercise-record" id="exercise-record">
-            <h2 id="record-date"></h4>
+            <h4 id="record-date"></h4>
             <p id="record-description">오늘의 운동 :</p>
             <p id="record-time">운동한 시간 : 00분</p>
         </div>
         <div class="exercise-log">
             <h3>운동 기록</h3>
-            <p>이전에 했던 운동을 기록하세요!</p>
-            <div"text" id="exercise-date" readonly placeholder="날짜를 선택하세요">
-            <button onclick="location.href = '일정관리_운동기록수정.html'", id="save-log">추가하기</button>
+            <input type="text" id="exercise-date" readonly placeholder="날짜를 선택하세요">
+            <textarea id="exercise-description" rows="4" placeholder="오늘의 운동을 입력하세요..."></textarea>
+            <input type="number" id="exercise-time" placeholder="운동한 시간을 입력하세요 (분)">
+            <button id="save-log">저장</button>
         </div>
     </div>
     <script>
@@ -368,6 +357,15 @@
             const description = exerciseDescription.value;
             const time = exerciseTime.value;
 
+            if (date && description && time) {
+                const logKey = `${date.slice(0, 4)}-${date.slice(6, 8)}-${date.slice(10, 12)}`;
+                exerciseLogs[logKey] = { description, time };
+                alert(`운동 기록이 저장되었습니다:\n날짜: ${date}\n운동: ${description}\n시간: ${time}분`);
+                exerciseDescription.value = "";
+                exerciseTime.value = "";
+            } else {
+                alert("모든 필드를 입력하세요.");
+            }
         });
 
         renderCalendar(currentMonth, currentYear);
